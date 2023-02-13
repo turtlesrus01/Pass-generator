@@ -38,7 +38,7 @@ function writePassword() {
     var passwordLength = Number(stringPrompt);
   //This if statement prompts the user about including certain character sets in the password
   if (passwordLength >= 8 && passwordLength <= 128) {
-      var lowerPrompt = confirm("Would you like to include: lowercase, uppercase, numeric, and/or special characters in your password?");
+      var lowerPrompt = confirm("Would you like to include: lowercase characters in your password?");
       var upperPrompt = confirm("Would you like to include: uppercase characters in your password?");
       var numericPrompt = confirm("Would you like to include: numeric characters in your password?");
       var specialPrompt = confirm("Would you like to include: special characters in your password?");
@@ -62,21 +62,21 @@ function writePassword() {
       console.log(pass);
       return pass;
     };
-
+    //Function for adding uppercase characters to password
     function upperFunction() {
       console.log(pass);
       pass += characterBank["upper"][Math.floor(Math.random()*characterBank.upper.length)];
       console.log(pass);
       return pass;
     };
-
+    //Function for adding numeric characters to password
     function numericFunction() {
       console.log(pass);
       pass += characterBank["numeric"][Math.floor(Math.random()*characterBank.numeric.length)];
       console.log(pass);
       return pass;
     };
-
+    //Function for adding special characters to password
     function specialFunction() {
       console.log(pass);
       pass += characterBank["special"][Math.floor(Math.random()*characterBank.special.length)];
@@ -88,6 +88,7 @@ function writePassword() {
     console.log(functionLength);
     //For loop for repeatedly adding characters to password
     for (i=0 ;i<functionLength; i++){
+      //if statement will operate based off of user choices, this first if contains all character sets
       if (lowerPrompt&&upperPrompt&&numericPrompt&&specialPrompt){
         lowerFunction(pass);
         upperFunction(pass);
@@ -95,7 +96,85 @@ function writePassword() {
         specialFunction(pass);
         console.log(pass);
         pass = pass.substring(0,functionLength)
-      } 
+        //These four if statements include the triplet combinations 
+      } else if (lowerPrompt&&upperPrompt&&numericPrompt) {
+        lowerFunction(pass);
+        upperFunction(pass);
+        numericFunction(pass);
+        console.log(pass);
+        pass = pass.substring(0,functionLength)
+      } else if (lowerPrompt&&upperPrompt&&specialPrompt) {
+        lowerFunction(pass);
+        upperFunction(pass);
+        specialFunction(pass);
+        console.log(pass);
+        pass = pass.substring(0,functionLength)
+      } else if (lowerPrompt&&specialPrompt&&numericPrompt) {
+        lowerFunction(pass);
+        numericFunction(pass);
+        specialFunction(pass);
+        console.log(pass);
+        pass = pass.substring(0,functionLength)
+      } else if (upperPrompt&&numericPrompt&&specialPrompt) {
+        specialFunction(pass);
+        upperFunction(pass);
+        numericFunction(pass);
+        console.log(pass);
+        pass = pass.substring(0,functionLength)
+        //These six if statements include 2 pair combinations
+      } else if (upperPrompt&&lowerPrompt) {
+        upperFunction(pass);
+        lowerFunction(pass);
+        console.log(pass);
+        pass = pass.substring(0,functionLength)
+      } else if (upperPrompt&&numericPrompt) {
+        upperFunction(pass);
+        numericFunction(pass);
+        console.log(pass);
+        pass = pass.substring(0,functionLength)
+      } else if (upperPrompt&&specialPrompt) {
+        upperFunction(pass);
+        specialFunction(pass);
+        console.log(pass);
+        pass = pass.substring(0,functionLength)
+      } else if (lowerPrompt&&numericPrompt) {
+        lowerFunction(pass);
+        numericFunction(pass);
+        console.log(pass);
+        pass = pass.substring(0,functionLength)
+      } else if (lowerPrompt&&specialPrompt) {
+        lowerFunction(pass);
+        specialFunction(pass);
+        console.log(pass);
+        pass = pass.substring(0,functionLength)
+      } else if (numericPrompt&&specialPrompt) {
+        numericFunction(pass);
+        specialFunction(pass);
+        console.log(pass);
+        pass = pass.substring(0,functionLength)
+        //These four if statements include the single choice functions
+      } else if (numericPrompt) {
+        numericFunction(pass);
+        console.log(pass);
+        pass = pass.substring(0,functionLength)
+      } else if (lowerPrompt) {
+        lowerFunction(pass);
+        console.log(pass);
+        pass = pass.substring(0,functionLength)
+      } else if (specialPrompt) {
+        specialFunction(pass);
+        console.log(pass);
+        pass = pass.substring(0,functionLength)
+      } else if (upperPrompt) {
+        upperFunction(pass);
+        console.log(pass);
+        pass = pass.substring(0,functionLength)
+      } else {
+        pass = "You have chosen no combinations, please refresh the page to try again.";
+      }
+
+      
+      
       
     };
     
