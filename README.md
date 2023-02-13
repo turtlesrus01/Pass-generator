@@ -1,8 +1,6 @@
 # Pass-generator
 
-## Password Generator
-
-## Descripton
+## Description
 This webpage contains a basic password generator made using the power of javascript! The site itself contains a simple container with a button prompt. 
 
 ## Usage 
